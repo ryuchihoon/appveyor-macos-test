@@ -5,22 +5,26 @@ branches:
     - gh-pages
     - docs
 
-image: macos
+image: macos-monterey
 
 clone_depth: 3
 
 environment:
-  GITHUB: choon
+  global:
+    GITHUB: choon
+  matrix:
+    - configuration: Debug
+    - image: Visual Studio 2022
+      configuration: Debug
 
 install:
-  - brew install tree
-
-configuration:
-  - Release
-  - Debug
+  - >-
+    if [ $(CI_MACOS) ]; then;
+      xcodebuild -version
+    fi
 
 before_build:
-  - env
+  - ps: $PSVersionTable
 
 build_script:
-  - tree -L 3 $(pwd)
+  - ps: Get-Location
