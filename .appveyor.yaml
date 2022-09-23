@@ -1,0 +1,26 @@
+version: {branch}-0.{build}
+
+branches:
+  except:
+    - gh-pages
+    - docs
+
+image: macos
+
+clone_depth: 3
+
+environment:
+  GITHUB: choon
+
+install:
+  - brew install tree
+
+configuration:
+  - Release
+  - Debug
+
+before_build:
+  - env
+
+build_script:
+  - tree -L 3 $(pwd)
