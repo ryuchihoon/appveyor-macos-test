@@ -5,7 +5,7 @@ branches:
     - gh-pages
     - docs
 
-image: macos
+image: macos-monterey
 
 clone_depth: 3
 
@@ -13,14 +13,11 @@ environment:
   GITHUB: choon
 
 install:
-  - brew install tree
+  - xcodebuild -version
 
-configuration:
-  - Release
-  - Debug
+configuration: Debug
 
 before_build:
   - env
 
-build_script:
-  - tree -L 3 $(pwd)
+#build_script:
